@@ -1,3 +1,9 @@
+const noCorsFetchOptions = {
+    headers: {
+        mode: 'cors'
+    }
+};
+
 async function init() {
   let params = getUrlParams();
   let address = params.address || params.a || null;
@@ -27,7 +33,8 @@ async function init() {
   let {
     binancecoin: { usd: bnbPrice },
   } = await fetch(
-    "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd"
+    "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd",
+    noCorsFetchOptions
   )
     .then((res) => res.json())
     .catch((err) => console.error("(╯°□°)╯︵ ┻━┻", err));
